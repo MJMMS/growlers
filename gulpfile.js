@@ -38,6 +38,12 @@ gulp.task('compass', function(){
 		}) //.pipe compass
 		.on('error', gutil.log))
 		.pipe(gulp.dest('builds/development/css'))
-}); //task js
+}); //task compass
+
+gulp.task('watch', function() {
+	gulp.watch(coffeeSources, ['coffee']);
+	gulp.watch(jsSources, ['js']);
+	gulp.watch('components/sass/*.scss', ['compass']);
+}); //task watch
 
 gulp.task('default', ['coffee', 'js', 'compass']);
